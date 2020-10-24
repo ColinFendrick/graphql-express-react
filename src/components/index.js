@@ -1,5 +1,7 @@
 import PostViewer from './PostViewer';
+import PostEditor from './PostEditor';
 
 export {
-	PostViewer
+	PostViewer,
+	PostEditor
 };
