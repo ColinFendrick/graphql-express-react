@@ -1,9 +1,11 @@
+require('dotenv').config({ path: '.env.local' });
 const express = require('express');
 const cors = require('cors');
 const { graphqlHTTP } = require('express-graphql');
 const gql = require('graphql-tag');
 
 const { buildASTSchema } = require('graphql');
+
 
 const POSTS = [{
 	author: 'John Doe',

@@ -1,5 +1,4 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import {
 	Button,
 	Form,
@@ -43,6 +42,7 @@ export default ({ post, onClose }) => (
 								name='author'
 								className='form-control'
 								component='input'
+								autocomplete='name'
 							/>
 						</FormGroup>
 						<FormGroup>
