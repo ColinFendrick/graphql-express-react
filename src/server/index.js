@@ -34,6 +34,11 @@ const schema = buildASTSchema(gql `
     post(id: ID!): Post
   }
 
+	type Mutation {
+		submitPost(input: PostInput!): Post
+		deletePost(id: ID!): Message
+	}
+
 	type Author {
 		id: ID
 		name: String
@@ -45,8 +50,8 @@ const schema = buildASTSchema(gql `
     body: String
   }
 
-	type Mutation {
-		submitPost(input: PostInput!): Post
+	type Message {
+		message: String!
 	}
 
 	input PostInput {
@@ -83,10 +88,9 @@ const getUserId = async ({ authorization }) => {
 
 const root = {
 	posts: () => POSTS.map(mapPost),
-	post: ({
-		id
-	}) => mapPost(POSTS[id], id),
+	post: ({ id }) => mapPost(POSTS[id], id),
 	submitPost: async ({ input: { id, body }}, { headers }) => {
+		console.log(body);
 		const authorId = await getUserId(headers);
 		if (!authorId) return null;
 
@@ -103,6 +107,18 @@ const root = {
 		}
 
 		return mapPost(post, index);
+	},
+	deletePost: async ({ id }, { headers }) => {
+		console.log('deletepost', id);
+		const authorId = await getUserId(headers);
+		if (!authorId) return null;
+
+		if (id !== null && id >= 0 && id < POSTS.length) {
+			if (POSTS[id].authorId !== authorId) return null;
+
+			POSTS.splice(id, 1);
+		}
+		return { message: `Successfully deleted post with id ${id}` };
 	}
 };
 

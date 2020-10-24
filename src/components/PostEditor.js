@@ -14,8 +14,6 @@ import { Form as FinalForm, Field } from 'react-final-form';
 import client from '../apollo';
 import { GET_POSTS, SUBMIT_POST } from '../gql';
 
-
-
 export default ({ post, onClose }) => (
 	<FinalForm
 		onSubmit={async ({ id, body }) => {

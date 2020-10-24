@@ -42,6 +42,7 @@ export default () => {
 				<PostViewer
 					onChange={post => user && user.sub === post.author.id}
 					onEdit={post => setState({ editing: post })}
+					canEdit={() => Boolean(user)}
 				/>
 				{state.editing && (
 					<PostEditor
