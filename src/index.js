@@ -8,6 +8,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import client from './apollo';
 
+import './index.css';
+import './App.css';
+
 
 ReactDOM.render(
 	<ApolloProvider client={client}>

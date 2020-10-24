@@ -5,9 +5,6 @@ import { Table } from 'reactstrap';
 import { GET_POSTS } from '../gql';
 
 export default ({ canEdit = () => false, onEdit = () => null }) => {
-	const rowStyles = (post, canEdit) => canEdit(post)
-		? { cursor: 'pointer', fontWeight: 'bold' }
-		: {};
 	return (
 		<Query query={GET_POSTS}>
 			{({ loading, data }) => !loading && (
@@ -22,7 +19,7 @@ export default ({ canEdit = () => false, onEdit = () => null }) => {
 						{data.posts.map(post => (
 							<tr
 								key={post.id}
-								style={rowStyles(post, canEdit)}
+								className={canEdit ? 'editable' : ''}
 								onClick={() => canEdit(post) && onEdit(post)}
 							>
 								<td>{post.author}</td>

@@ -1,0 +1,18 @@
+.table {
+  color: #ddd;
+}
+
+.editable {
+  cursor: pointer;
+  font-weight: bold;
+  color: #cdcecf;
+}
+
+.editable:hover {
+  color: yellow;
+  background-color: rgba(225, 83, 238, 0.32);
+}
+
+.modal-content {
+  background-color: #282c34;
+}
