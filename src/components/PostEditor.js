@@ -18,9 +18,9 @@ import { GET_POSTS, SUBMIT_POST } from '../gql';
 
 export default ({ post, onClose }) => (
 	<FinalForm
-		onSubmit={async ({ id, author, body }) => {
+		onSubmit={async ({ id, body }) => {
 			await client.mutate({
-				variables: { input: { id, author, body }},
+				variables: { input: { id, body }},
 				mutation: SUBMIT_POST,
 				refetchQueries: () => [{ query: GET_POSTS }],
 			});
@@ -35,16 +35,6 @@ export default ({ post, onClose }) => (
 						{post.id ? 'Edit Post' : 'New Post'}
 					</ModalHeader>
 					<ModalBody>
-						<FormGroup>
-							<Label>Author</Label>
-							<Field
-								required
-								name='author'
-								className='form-control'
-								component='input'
-								autocomplete='name'
-							/>
-						</FormGroup>
 						<FormGroup>
 							<Label>Body</Label>
 							<Field

@@ -6,9 +6,9 @@ import useAuth from './hooks/useAuth';
 
 export default () => {
 	const [state, setState] = useState({ editing: null });
-	const { user, login, logout, loading, updateAuth } = useAuth();
+	const { user, login, logout, loading, updateAuth, authState, authService } = useAuth();
 
-	useEffect(() => updateAuth());
+	useEffect(() => updateAuth(), [authState, authService]);
 
 	return (
 		<>
@@ -40,7 +40,7 @@ export default () => {
 					</Button>
 				)}
 				<PostViewer
-					canEdit={() => !!user}
+					onChange={post => user && user.sub === post.author.id}
 					onEdit={post => setState({ editing: post })}
 				/>
 				{state.editing && (

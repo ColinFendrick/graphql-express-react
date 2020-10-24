@@ -4,7 +4,10 @@ export default gql `
   query GetPosts {
     posts {
       id
-      author
+      author {
+        id
+        name
+      }
       body
     }
   }

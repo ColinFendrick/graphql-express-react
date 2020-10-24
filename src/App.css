@@ -10,7 +10,12 @@
 
 .editable:hover {
   color: yellow;
-  background-color: rgba(225, 83, 238, 0.32);
+  background-color: #e153ee51;
+}
+
+.not-editable {
+  cursor: not-allowed;
+  color: #cdcecf80;
 }
 
 .modal-content {

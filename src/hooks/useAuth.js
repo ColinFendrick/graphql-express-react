@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 
+import { updateAuth as apolloUpdateAuth } from '../apollo';
+
 export default () => {
 	const [state, setState] = useState({
 		authenticated: false,
@@ -10,6 +12,7 @@ export default () => {
 	const { authState, authService } = useOktaAuth();
 
 	const updateAuth = async () => {
+		apolloUpdateAuth({ authState, authService });
 		const authenticated = await authState.isAuthenticated;
 		if (authenticated !== state.authenticated) {
 			const user = await authService.getUser();
@@ -22,6 +25,8 @@ export default () => {
 		loading: state.loading,
 		login: authService.login,
 		logout: authService.logout,
-		updateAuth
+		updateAuth,
+		authState,
+		authService
 	};
 };
